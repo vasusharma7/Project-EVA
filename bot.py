@@ -1,6 +1,7 @@
-from modules import *
 from twitter import tweets
-from chat import master_chat
+from modules import *
+# from chat import master_chat
+print("Initialising Chatbot")
 
 
 if not os.path.exists("./audio"):
@@ -28,7 +29,8 @@ while 1:
                 break
     elif "chat mode" in text:
         # system("clear")
-        master_chat()
+        pass
+        # master_chat()
     elif "news" in text:
         print("Fetching News....Please Wait")
         data = tweets(1, "EconomicTimes")
