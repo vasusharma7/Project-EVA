@@ -1,8 +1,12 @@
 from modules import *
 from twitter import tweets
-from chat import master_chat
+from chat import master_chat,driver
 
 
+# chrome_options = Options()
+# chrome_options.add_argument("--headless")
+# chrome_options.add_argument("--no-sandbox")
+# driver = webdriver.Chrome("drivers/chromedriver",options=chrome_options)
 if not os.path.exists("./audio"):
     os.mkdir("./audio")
 if not os.path.exists("./images"):
@@ -12,13 +16,14 @@ path, dirs, files = next(os.walk("./images"))
 image_count = len(files)
 
 while 1:
-    r = sr.Recognizer()
-    with sr.Microphone() as source:
-        print("Say something")
-        audio = r.listen(source, timeout=10)
-        print("Time over")
+    # r = sr.Recognizer()
+    # with sr.Microphone() as source:
+    #     print("Say something")
+    #     audio = r.listen(source, timeout=10)
+    #     print("Time over")
     try:
-        text = r.recognize_google(audio)
+        # text = r.recognize_google(audio)
+        text=input()
     except:
         continue
     print("Text :"+text)
@@ -53,15 +58,16 @@ while 1:
     elif "translate" in text:
         text=text.replace("translate",'')
         speech=gTTS("What language should I translate to?",lang='en',slow=False)
+        os.remove("speech_default.mp3")
         speech.save("speech_default.mp3")
         playsound.playsound("speech_default.mp3",True)
-        # language=input()
-        s=sr.Recognizer()
-        with sr.Microphone() as source:
-            print("Say something")
-            audio=s.listen(source)
-        print("Time over")
-        language=s.recognize_google(audio)
+        language=input()
+        # s=sr.Recognizer()
+        # with sr.Microphone() as source:
+        #     print("Say something")
+        #     audio=s.listen(source)
+        # print("Time over")
+        # language=s.recognize_google(audio)
         language=language[0].lower()+language[1:]
         print(language)
         if language=="chinese" or language=="chinese simplified":
@@ -73,6 +79,7 @@ while 1:
         print(res.text)
         language=googletrans.LANGCODES[language]
         speech=gTTS(text=res.text,lang=language,slow=False)
+        os.remove("speech.mp3")
         speech.save("speech.mp3")
         playsound.playsound("speech.mp3")
     elif "repeat after me" in text:
@@ -186,6 +193,63 @@ while 1:
         print("GoodBye")
         break
     else:
+        text = text.replace('+', '%2B')
         text = text.replace(' ', '+')
         URL = f"https://google.com/search?q={text}"
-        webbrowser.open_new_tab(URL)
+        data=[]
+        driver.get(URL)
+        content=driver.page_source
+        soup=BeautifulSoup(content,features='html.parser')
+        try:
+            # webbrowser.open_new_tab(URL)
+            data=soup.find('div', attrs={'class':'ayqGOc kno-fb-ctx KBXm4e'})
+            print(data.text)
+            continue
+        except:
+            pass
+        try:
+            data=soup.findAll('div', attrs={'class':'thODed Uekwlc XpoqFe'})
+            # res=(data.text).split(" ")
+            count=0
+            for i in data:
+                if count>2:
+                    break
+                for j in range(2,len(i.text)):
+                    if i.text[j]=='.':
+                        break
+                if i.text[0] not in ['1','2','3']:
+                    print((count+1),end="")
+                    print(". ",end="")
+                print(i.text[:j+1])
+                count+=1
+                # print(i.text)
+            continue
+        except:
+            pass
+        try:
+            data=soup.find('div', attrs={'class':'z7BZJb XSNERd'})
+            res=(data.text).split(" ")
+            print(res[1])
+            continue
+        except:
+            pass
+        try:
+            data=soup.find('div', attrs={'class':'Z0LcW XcVN5d'})
+            print(data.text)
+            continue
+        except:
+            pass
+        try:
+            data=soup.find('div', attrs={'class':'Z0LcW XcVN5d AZCkJd'})
+            print(data.text)
+            continue
+        except:
+            pass
+        try:
+            text = text.replace('+', '%2B')
+            text = text.replace(' ', '+')
+            URL = f"https://google.com/search?q={text}"
+            webbrowser.open_new_tab(URL)
+            continue
+        except:
+            pass
