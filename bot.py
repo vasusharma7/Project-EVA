@@ -220,10 +220,17 @@ while 1:
                 if i.text[0] not in ['1','2','3']:
                     print((count+1),end="")
                     print(". ",end="")
-                print(i.text[:j+1])
+                if i.text[:j+1] != "":
+                    print(i.text[:j+1])
+                    flag=False
+                else:
+                    flag=True
                 count+=1
                 # print(i.text)
-            continue
+            if flag==False:
+                continue
+            else:
+                pass
         except:
             pass
         try:
@@ -246,9 +253,6 @@ while 1:
         except:
             pass
         try:
-            text = text.replace('+', '%2B')
-            text = text.replace(' ', '+')
-            URL = f"https://google.com/search?q={text}"
             webbrowser.open_new_tab(URL)
             continue
         except:
