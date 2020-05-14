@@ -11,9 +11,6 @@ import googletrans
 from googletrans import Translator
 from docx2pdf import convert
 import subprocess
-from PIL import Image
-import zipfile
-import tarfile
 import playsound
 from os import system
 from selenium.webdriver.common.keys import Keys
@@ -22,3 +19,4 @@ from bs4 import BeautifulSoup
 import time
 import cv2
 import json
+import shutil
