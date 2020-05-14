@@ -62,7 +62,7 @@ def image_conversion():
 
     root.mainloop()
 
-
+os.system('cls')
 while 1:
     # r = sr.Recognizer()
     # with sr.Microphone() as source:
@@ -81,6 +81,7 @@ while 1:
         text=text.replace(" ","%20")
         text2+=text
         webbrowser.open_new_tab(text2)
+        os.system('cls')
     elif "suggest movie" in text:
         speech=gTTS("What genre do you want?",lang='en',slow=False)
         speech.save("speech_default.mp3")
@@ -97,12 +98,20 @@ while 1:
         for j in search(text, tld="co.in", num=10,stop=10,pause=2):
             if "agoodmovietowatch.com" in j:
                 webbrowser.open_new_tab(j)
+                os.system('cls')
                 break
     elif "stock price" in text:
+        flag=True
         for j in search(text, tld="co.in", num=10, stop=10, pause=2):
             if "moneycontrol.com" in j:
                 webbrowser.open_new_tab(j)
+                flag=False
+                os.system('cls')
                 break
+        if flag:
+            URL = f"https://google.com/search?q={text}"
+            webbrowser.open_new_tab(URL)
+            os.system('cls')
     elif "translate" in text:
         text=text.replace("translate",'')
         speech=gTTS("What language should I translate to?",lang='en',slow=False)
@@ -130,11 +139,15 @@ while 1:
         os.remove("speech.mp3")
         speech.save("speech.mp3")
         playsound.playsound("speech.mp3")
+        print("")
+        print("")
     elif "repeat after me" in text:
         text=text[16:]
         speak=gTTS(text=text,lang='en',slow=False)
         speak.save("speech.mp3")
         playsound.playsound("speech.mp3",True)
+        print("")
+        print("")
     elif "convert" in text:
         print("What would you like to convert?")
         print("1. doc to pdf")
@@ -162,6 +175,7 @@ while 1:
                 os.startfile(inside)
         elif choice==2:
                 image_conversion()
+        os.system('cls')
     elif "compress file" in text:
         print("Select compression format:")
         print("1. .tar.gz")
@@ -195,6 +209,7 @@ while 1:
             inside=inside[index2+1:]
             shutil.make_archive(output+name,'zip',output,inside)
             os.startfile(output)
+        os.system('cls')
     elif "compress folder" in text:
         print("Select compression format:")
         print("1. .tar.gz")
@@ -222,6 +237,7 @@ while 1:
             inside = r"{}".format(inside)
             shutil.make_archive(outside, 'zip',inside)
             os.startfile(inside[:index2])
+        os.system('cls')
     elif "wikipedia" in text:
         flag=False
         text=text.replace("search on wikipedia","")
@@ -237,6 +253,7 @@ while 1:
             text = text.replace(' ', '+')
             URL = f"https://google.com/search?q={text}"
             webbrowser.open_new_tab(URL)
+        os.system('cls')
     elif "chat mode" in text:
         # system("clear")
         master_chat()
@@ -290,6 +307,7 @@ while 1:
         try:
             # webbrowser.open_new_tab(URL)
             data=soup.find('div', attrs={'class':'ayqGOc kno-fb-ctx KBXm4e'})
+            os.system('cls')
             print(data.text)
             continue
         except:
@@ -298,6 +316,7 @@ while 1:
             data=soup.findAll('div', attrs={'class':'thODed Uekwlc XpoqFe'})
             # res=(data.text).split(" ")
             count=0
+            os.system('cls')
             for i in data:
                 if count>2:
                     break
@@ -323,23 +342,28 @@ while 1:
         try:
             data=soup.find('div', attrs={'class':'z7BZJb XSNERd'})
             res=(data.text).split(" ")
+            os.system('cls')
             print(res[1])
             continue
         except:
             pass
         try:
             data=soup.find('div', attrs={'class':'Z0LcW XcVN5d'})
+            os.system('cls')
             print(data.text)
             continue
         except:
             pass
         try:
             data=soup.find('div', attrs={'class':'Z0LcW XcVN5d AZCkJd'})
+            os.system('cls')
             print(data.text)
             continue
         except:
             pass
         try:
+            print("reached me")
+            os.system('cls')
             webbrowser.open_new_tab(URL)
             continue
         except:
