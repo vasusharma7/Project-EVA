@@ -1,6 +1,11 @@
 from modules import *
 from twitter import tweets
 from chat import master_chat,driver
+import tkinter as tk
+from tkinter import *
+from tkinter import filedialog
+from tkinter.filedialog import askopenfilename
+from PIL import Image
 
 
 # chrome_options = Options()
@@ -14,6 +19,49 @@ if not os.path.exists("./images"):
 
 path, dirs, files = next(os.walk("./images"))
 image_count = len(files)
+
+def image_conversion():
+    root = tk.Tk()
+    def my_function():
+        current_id = variable.get()
+        output_format =str(current_id)
+        inside=root.filename
+        for i in range(len(inside)):
+            if inside[i]=='/':
+                index=i
+            if inside[i]=='.':
+                index2=i
+        output=inside[:index]
+        outside=inside[:index2]
+        outside+=output_format
+        inside = r"{}".format(inside)
+        outside = r"{}".format(outside)
+        img = Image.open(inside)
+        new_i = img.convert('RGB')
+        new_i.save(outside)
+        root.destroy()
+        os.startfile(output)
+
+    desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
+    root.filename = filedialog.askopenfilename(initialdir=desktop, title="Select A File")
+    print(root.filename)
+    my_label = tk.Label(root, text = "Select output image format")
+    my_label.config(width=25,font=('Helvetica,12'))
+    my_label.grid(row = 0, column = 0)
+
+    OptionList = [".jpg",".png",".tiff",".bmp",".eps"]
+    variable = tk.StringVar(root)
+    variable.set(OptionList[0])
+    opt = tk.OptionMenu(root, variable, *OptionList)
+    opt.config(width=50, font=('Helvetica', 12))
+    opt.grid(row = 2, column = 0)
+
+    my_button = tk.Button(root, text = "Submit", command = my_function)
+    my_button.config(width=10,font=('Helvetica,12'))
+    my_button.grid(row = 4, column = 0)
+
+    root.mainloop()
+
 
 while 1:
     # r = sr.Recognizer()
@@ -90,51 +138,90 @@ while 1:
     elif "convert" in text:
         print("What would you like to convert?")
         print("1. doc to pdf")
-        print("2. pdf to doc")
-        print("3. Image format conversion")
+        print("2. Image format conversion")
         choice=int(input())
         if choice==1:
             print("1. Convert docx file")
             print("2. Convert all docx files in a folder")
             ch=int(input())
             if ch==1:
-                inside=input("Enter file name")
-                outside=input("What would you like to name output file?")
-                inside+=".docx"
-                outside+=".pdf"
+                Tk().withdraw()
+                inside= askopenfilename()
+                outside=inside[:len(inside)-4]
+                outside+="pdf"
                 convert(inside,outside)
-                subprocess.Popen('explorer "C:\path\of\folder"')
+                for i in range(len(inside)):
+                    if inside[i]=='/':
+                        index=i
+                os.startfile(inside[:index])
             else:
-                inside=input("Enter folder path")
+                root = Tk()
+                root.withdraw()
+                inside = filedialog.askdirectory()
                 convert(inside)
-                subprocess.Popen('explorer '+'"'+inside+'"')
-        elif choice==3:
-                inside=input("Enter input image with extension: ")
-                outside=input("Enter output image with extension: ")
-                inside = r"{}".format(inside)
-                outside = r"{}".format(outside)
-                img = Image.open(inside)
-                img.save(outside)
-    elif "compress" in text:
+                os.startfile(inside)
+        elif choice==2:
+                image_conversion()
+    elif "compress file" in text:
         print("Select compression format:")
         print("1. .tar.gz")
         print("2. .zip")
         choice=int(input())
         if choice==1:
-            inside=input("Enter path with file extension: ")
-            outside=input("Enter output file name: ")
-            outside+=".tar.gz"
-            inside = r"{}".format(inside)
-            with tarfile.open(outside,"w:gz") as tar:
-                tar.add(inside, arcname=os.path.basename(inside))
-            tar.close()
+            Tk().withdraw()
+            inside= askopenfilename()
+            for i in range(len(inside)):
+                if inside[i]=='.':
+                    index=i
+                if inside[i]=='/':
+                    index2=i
+            output=inside[:index2]
+            output+='//'
+            name=inside[index2+1:index]
+            inside=inside[index2+1:]
+            shutil.make_archive(output+name,'tar',output,inside)
+            os.startfile(output)
         elif choice==2:
-            inside=input("Enter path with file extension: ")
-            outside=input("Enter output path with file extension: ")
+            Tk().withdraw()
+            inside= askopenfilename()
+            for i in range(len(inside)):
+                if inside[i]=='.':
+                    index=i
+                if inside[i]=='/':
+                    index2=i
+            output=inside[:index2]
+            output+='//'
+            name=inside[index2+1:index]
+            inside=inside[index2+1:]
+            shutil.make_archive(output+name,'zip',output,inside)
+            os.startfile(output)
+    elif "compress folder" in text:
+        print("Select compression format:")
+        print("1. .tar.gz")
+        print("2. .zip")
+        choice=int(input())
+        if choice==1:
+            root = Tk()
+            root.withdraw()
+            inside = filedialog.askdirectory()
+            for i in range(len(inside)):
+                if inside[i]=='/':
+                    index2=i
+            outside=inside
             inside = r"{}".format(inside)
-            comp= zipfile.ZipFile(outside, 'w')
-            comp.write(inside,arcname=os.path.basename(inside), compress_type=zipfile.ZIP_DEFLATED)
-            comp.close()
+            shutil.make_archive(outside, 'tar',inside)
+            os.startfile(inside[:index2])
+        elif choice==2:
+            root = Tk()
+            root.withdraw()
+            inside = filedialog.askdirectory()
+            for i in range(len(inside)):
+                if inside[i]=='/':
+                    index2=i
+            outside=inside
+            inside = r"{}".format(inside)
+            shutil.make_archive(outside, 'zip',inside)
+            os.startfile(inside[:index2])
     elif "wikipedia" in text:
         flag=False
         text=text.replace("search on wikipedia","")
