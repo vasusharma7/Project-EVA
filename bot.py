@@ -1,12 +1,15 @@
+from modules import *
 from twitter import tweets
-
-from chat import master_chat,driver
+from chat import master_chat, driver
+from game import main
 import tkinter as tk
 from tkinter import *
 from tkinter import filedialog
+import tkinter.messagebox
 from tkinter.filedialog import askopenfilename
 from PIL import Image
 import getpass
+
 # chrome_options = Options()
 # chrome_options.add_argument("--headless")
 # chrome_options.add_argument("--no-sandbox")
@@ -279,8 +282,9 @@ while 1:
         os.system('cls')
     elif "chat mode" in text:
         # system("clear")
-        pass
-        # master_chat()
+        master_chat()
+    elif "game" in text:
+        main() 
     elif "news" in text:
         print("Fetching News....Please Wait")
         data = tweets(1, "EconomicTimes")
