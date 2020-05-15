@@ -40,7 +40,7 @@ def master_chat():
     while 1:
         with sr.Microphone() as source:
             print("Say something")
-            audio = r.listen(source)
+            audio = r.listen(source, timeout=3)
             print("Times Up !!")
         try:
             text = r.recognize_google(audio)
@@ -55,9 +55,10 @@ def master_chat():
             try:
                 response = json.loads(
                     str(response.__dict__['_content'].decode("utf-8")))
-                if response['score'] > 0:
+                if response['score'] > 0.5:
                     print("From Model : ", end=" ")
-                    print(response['answer'])
+                    print(response['answer'], end=" ")
+                    print(response['score'])
                 else:
                     print("From Web : ", end=" ")
                     print(chat_response(query=text))
