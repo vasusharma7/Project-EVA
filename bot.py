@@ -84,14 +84,24 @@ while 1:
         os.system('cls')
     elif "suggest movie" in text:
         speech=gTTS("What genre do you want?",lang='en',slow=False)
+        try:
+            os.remove("speech_default.mp3")
+        except FileNotFoundError:
+            print("FileNotFoundError: The system cannot find the file specified: 'speech_default.mp3'")
         speech.save("speech_default.mp3")
         playsound.playsound("speech_default.mp3",True)
-        s=sr.Recognizer()
-        with sr.Microphone() as source:
-            print("Speak")
-            audio=s.listen(source)
-            print("Over")
-        text=s.recognize_google(audio)
+        while(1):
+            s=sr.Recognizer()
+            with sr.Microphone() as source:
+                print("Speak")
+                audio=s.listen(source, timeout = 10)
+                print("Over")
+            try:
+                text=s.recognize_google(audio)
+            except:
+                continue
+            else:
+                break
         # text=input()
         text2="agoodmovietowatch.com"
         text=text+" movie "+text2
@@ -115,7 +125,10 @@ while 1:
     elif "translate" in text:
         text=text.replace("translate",'')
         speech=gTTS("What language should I translate to?",lang='en',slow=False)
-        os.remove("speech_default.mp3")
+        try:
+            os.remove("speech_default.mp3")
+        except FileNotFoundError:
+            print("FileNotFoundError: The system cannot find the file specified: 'speech_default.mp3'")
         speech.save("speech_default.mp3")
         playsound.playsound("speech_default.mp3",True)
         language=input()
@@ -131,23 +144,34 @@ while 1:
             language="chinese (simplified)"
         elif language=="chinese traditional":
             language="chinese (traditional)"
-        trans=Translator()                                  #translator object
-        res=trans.translate(text,language)
-        print(res.text)
-        language=googletrans.LANGCODES[language]
-        speech=gTTS(text=res.text,lang=language,slow=False)
-        os.remove("speech.mp3")
-        speech.save("speech.mp3")
-        playsound.playsound("speech.mp3")
-        print("")
-        print("")
+        trans=Translator()               #translator object
+        try:                              
+            res=trans.translate(text,language)
+            print(res.text)
+            language=googletrans.LANGCODES[language]
+        except ValueError:
+            print("ValueError: invalid destination language")
+        else:
+            try:
+                speech=gTTS(text=res.text,lang=language,slow=False)
+            except AssertionError:           
+                print("AssertionError: 'No text to speak'")
+            else:
+                try:
+                    os.remove("speech.mp3")
+                except FileNotFoundError:
+                    print("FileNotFoundError: The system cannot find the file specified: 'speech.mp3'")
+                speech.save("speech.mp3")
+                playsound.playsound("speech.mp3")
     elif "repeat after me" in text:
         text=text[16:]
         speak=gTTS(text=text,lang='en',slow=False)
+        try:
+            os.remove("speech.mp3")
+        except FileNotFoundError:
+            print("FileNotFoundError: The system cannot find the file specified: 'speech.mp3'")
         speak.save("speech.mp3")
         playsound.playsound("speech.mp3",True)
-        print("")
-        print("")
     elif "convert" in text:
         print("What would you like to convert?")
         print("1. doc to pdf")
@@ -174,7 +198,7 @@ while 1:
                 convert(inside)
                 os.startfile(inside)
         elif choice==2:
-                image_conversion()
+            image_conversion()
         os.system('cls')
     elif "compress file" in text:
         print("Select compression format:")
@@ -362,9 +386,8 @@ while 1:
         except:
             pass
         try:
-            print("reached me")
-            os.system('cls')
             webbrowser.open_new_tab(URL)
+            os.system('cls')
             continue
         except:
             pass
