@@ -1,0 +1,3 @@
+Collecting tensorflow_text
+  Using cached https://files.pythonhosted.org/packages/50/35/b87b84648f84b9021df3407422d3cf9afdcbb9b087d2bf293fe72557b7a5/tensorflow_text-2.1.1-cp36-cp36m-manylinux1_x86_64.whl
+Collecting tensorflow<2.2,>=2.1.0 (from tensorflow_text)
