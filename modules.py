@@ -7,6 +7,11 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from gtts import gTTS
+import googletrans
+from googletrans import Translator
+from docx2pdf import convert
+import subprocess
+import playsound
 from os import system
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
@@ -14,3 +19,4 @@ from bs4 import BeautifulSoup
 import time
 import cv2
 import json
+import shutil
