@@ -6,7 +6,7 @@ chrome_options.add_argument("--no-sandbox")
 driver = webdriver.Chrome("./drivers/chromedriver.exe",
                           chrome_options=chrome_options)
 
-url = "http://3.87.126.120/response?="
+url = "http://3.87.126.120:7000/response?question="
 
 
 def chat_response(query="", initialise=False):

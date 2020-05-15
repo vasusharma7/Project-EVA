@@ -1,5 +1,5 @@
-from modules import *
 from twitter import tweets
+
 from chat import master_chat,driver
 import tkinter as tk
 from tkinter import *
@@ -7,7 +7,6 @@ from tkinter import filedialog
 from tkinter.filedialog import askopenfilename
 from PIL import Image
 import getpass
-
 # chrome_options = Options()
 # chrome_options.add_argument("--headless")
 # chrome_options.add_argument("--no-sandbox")
@@ -280,7 +279,8 @@ while 1:
         os.system('cls')
     elif "chat mode" in text:
         # system("clear")
-        master_chat()
+        pass
+        # master_chat()
     elif "news" in text:
         print("Fetching News....Please Wait")
         data = tweets(1, "EconomicTimes")
