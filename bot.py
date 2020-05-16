@@ -9,6 +9,8 @@ import tkinter.messagebox
 from tkinter.filedialog import askopenfilename
 from PIL import Image
 import getpass
+import random
+import wolframalpha
 
 # chrome_options = Options()
 # chrome_options.add_argument("--headless")
@@ -76,7 +78,7 @@ while 1:
         text=input()
     except:
         continue
-    print("Text :"+text)
+    print("Text : "+text)
     if "where to watch" in text:
         text=text.replace("where to watch","")
         text2="https://www.justwatch.com/in/search?q="
@@ -285,6 +287,30 @@ while 1:
         master_chat()
     elif "game" in text:
         main() 
+    elif "dice" in text:
+        num = str(random.randint(1, 6))
+        playsound.playsound("dice.wav",True)
+        speak = gTTS(text = "You rolled a " + num, lang='en', slow=False)
+        try:
+            os.remove("speech.mp3")
+        except FileNotFoundError:
+            print("FileNotFoundError: The system cannot find the file specified: 'speech.mp3'")
+        speak.save("speech.mp3")
+        playsound.playsound("speech.mp3",True)
+    elif "coin" in text:
+        flip = random.randint(0, 1)
+        if flip == 0:
+            text = "heads"
+        elif flip == 1:
+            text = "tails"
+        playsound.playsound("coin.mp3",True)
+        speak=gTTS(text = "You got " + text, lang='en', slow=False)
+        try:
+            os.remove("speech.mp3")
+        except FileNotFoundError:
+            print("FileNotFoundError: The system cannot find the file specified: 'speech.mp3'")
+        speak.save("speech.mp3")
+        playsound.playsound("speech.mp3",True)
     elif "news" in text:
         print("Fetching News....Please Wait")
         data = tweets(1, "EconomicTimes")
@@ -455,6 +481,20 @@ while 1:
         password.send_keys(pwd)
         driver.find_element_by_xpath("//*[@id='login']/form/div[4]/input[9]").click()
         os.system('cls')
+    elif "calculate" in text:
+        # Taking input from user 
+        #question = input('Question : ') 
+        app_id = "4LJ6P5-XH7TQG859X"   
+        # Instance of wolfram alpha client class  
+        client = wolframalpha.Client(app_id) 
+        try:
+            res = client.query(text)         
+            # Includes only text from the response 
+            answer = next(res.results).text  
+        except:
+            print("Sorry, the assistant doesn't understand your query")
+        else:      
+            print("Answer : " + answer) 
     elif "exit" in text:
         print("GoodBye")
         break
