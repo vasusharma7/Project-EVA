@@ -5,6 +5,8 @@ chrome_options.add_argument("--headless")
 chrome_options.add_argument("--no-sandbox")
 driver = webdriver.Chrome("./drivers/chromedriver.exe",
                           chrome_options=chrome_options)
+prefs = {"profile.managed_default_content_settings.images":2}
+chrome_options.add_experimental_option("prefs", prefs)
 
 url = "http://3.87.126.120:7000/response?question="
 
