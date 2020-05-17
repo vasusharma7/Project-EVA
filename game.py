@@ -8,8 +8,8 @@ class ttt(object):
 
         self.playera = StringVar()
         self.playerb = StringVar()
-        self.p1 = StringVar()
-        self.p2 = StringVar()
+        self.p1 = StringVar(value = "Player 1")
+        self.p2 = StringVar(value = "Player 2")
 
         self.player1_name = Entry(self.tk, textvariable=self.p1, bd=2)
         self.player1_name.grid(row=1, column=1, columnspan=8)
