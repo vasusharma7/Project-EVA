@@ -97,10 +97,9 @@ class ttt(object):
             self.button7['text'] == 'X' and self.button8['text'] == 'X' and self.button9['text'] == 'X' or
             self.button1['text'] == 'X' and self.button5['text'] == 'X' and self.button9['text'] == 'X' or
             self.button3['text'] == 'X' and self.button5['text'] == 'X' and self.button7['text'] == 'X' or
-            self.button1['text'] == 'X' and self.button2['text'] == 'X' and self.button3['text'] == 'X' or
             self.button1['text'] == 'X' and self.button4['text'] == 'X' and self.button7['text'] == 'X' or
             self.button2['text'] == 'X' and self.button5['text'] == 'X' and self.button8['text'] == 'X' or
-            self.button7['text'] == 'X' and self.button6['text'] == 'X' and self.button9['text'] == 'X'):
+            self.button3['text'] == 'X' and self.button6['text'] == 'X' and self.button9['text'] == 'X'):
             self.disableButton()
             tkinter.messagebox.showinfo("Tic-Tac-Toe", self.playera)
 
@@ -112,10 +111,9 @@ class ttt(object):
             self.button7['text'] == 'O' and self.button8['text'] == 'O' and self.button9['text'] == 'O' or
             self.button1['text'] == 'O' and self.button5['text'] == 'O' and self.button9['text'] == 'O' or
             self.button3['text'] == 'O' and self.button5['text'] == 'O' and self.button7['text'] == 'O' or
-            self.button1['text'] == 'O' and self.button2['text'] == 'O' and self.button3['text'] == 'O' or
             self.button1['text'] == 'O' and self.button4['text'] == 'O' and self.button7['text'] == 'O' or
             self.button2['text'] == 'O' and self.button5['text'] == 'O' and self.button8['text'] == 'O' or
-            self.button7['text'] == 'O' and self.button6['text'] == 'O' and self.button9['text'] == 'O'):
+            self.button3['text'] == 'O' and self.button6['text'] == 'O' and self.button9['text'] == 'O'):
             self.disableButton()
             tkinter.messagebox.showinfo("Tic-Tac-Toe", self.playerb)
       
