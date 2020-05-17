@@ -347,7 +347,7 @@ while 1:
                 image_count += 1
         cam.release()
         cv2.destroyAllWindows()
-    elif "gmail" in text:
+    elif "login to gmail" in text:
         email = input("Email(or phone) : ")
         pwd = getpass.getpass("Password : ")
         driver = webdriver.Chrome("./drivers/chromedriver.exe")
@@ -361,7 +361,7 @@ while 1:
         password.send_keys(pwd)
         driver.find_element_by_xpath("//*[@id='passwordNext']/span/span").click()
         os.system('cls')
-    elif "moodle" in text:
+    elif "login to moodle" in text:
         uname = input("Username : ")
         pwd = getpass.getpass("Password : ")
         driver = webdriver.Chrome("./drivers/chromedriver.exe")
@@ -374,7 +374,7 @@ while 1:
         password.send_keys(pwd)
         driver.find_element_by_xpath("//*[@id='loginbtn']").click()
         os.system('cls')
-    elif "instagram" in text:
+    elif "login to instagram" in text:
         uname = input("Phone number, username or email : ")
         pwd = getpass.getpass("Password : ")
         driver = webdriver.Chrome("./drivers/chromedriver.exe")
@@ -388,7 +388,7 @@ while 1:
         password.send_keys(pwd)
         driver.find_element_by_xpath("//*[@id='react-root']/section/main/div/article/div/div[1]/div/form/div[4]").click()
         os.system('cls')
-    elif "facebook" in text:
+    elif "login to facebook" in text:
         email = input("Mobile number/email address : ")
         pwd = getpass.getpass("Password : ")
         driver = webdriver.Chrome("./drivers/chromedriver.exe")
@@ -401,7 +401,7 @@ while 1:
         password.send_keys(pwd)
         driver.find_element_by_xpath("//*[@id='u_0_4']/button").click()
         os.system('cls')
-    elif "twitter" in text:
+    elif "login to twitter" in text:
         email = input("Phone, email or username : ")
         pwd = getpass.getpass("Password : ")
         driver = webdriver.Chrome("./drivers/chromedriver.exe")
@@ -415,7 +415,7 @@ while 1:
         password.send_keys(pwd)
         driver.find_element_by_xpath("//*[@id='react-root']/div/div/div[2]/main/div/div/form/div/div[3]/div/div/span/span").click()
         os.system('cls')
-    elif "amazon" in text:
+    elif "login to amazon" in text:
         email = input("Email/Phone : ")
         pwd = getpass.getpass("Password : ")
         driver = webdriver.Chrome("./drivers/chromedriver.exe")
@@ -429,7 +429,7 @@ while 1:
         password.send_keys(pwd)
         driver.find_element_by_xpath("//*[@id='signInSubmit']").click()
         os.system('cls')
-    elif "prime" in text:
+    elif "login to prime" in text:
         email = input("Email/Phone : ")
         pwd = getpass.getpass("Password : ")
         driver = webdriver.Chrome("./drivers/chromedriver.exe")
@@ -442,7 +442,7 @@ while 1:
         password.send_keys(pwd)
         driver.find_element_by_xpath("//*[@id='signInSubmit']").click()
         os.system('cls')
-    elif "netflix" in text:
+    elif "login to netflix" in text:
         email = input("Email/Phone number : ")
         pwd = getpass.getpass("Password : ")
         driver = webdriver.Chrome("./drivers/chromedriver.exe")
@@ -455,7 +455,7 @@ while 1:
         password.send_keys(pwd)
         driver.find_element_by_xpath("//*[@id='appMountPoint']/div/div[3]/div/div/div[1]/form/button").click()
         os.system('cls')
-    elif "linkedin" in text:
+    elif "login to linkedin" in text:
         email = input("Email/Phone : ")
         pwd = getpass.getpass("Password : ")
         driver = webdriver.Chrome("./drivers/chromedriver.exe")
@@ -468,7 +468,7 @@ while 1:
         password.send_keys(pwd)
         driver.find_element_by_xpath("//*[@type='submit']").click()
         os.system('cls')
-    elif "github" in text:
+    elif "login to github" in text:
         email = input("Username/Email address : ")
         pwd = getpass.getpass("Password : ")
         driver = webdriver.Chrome("./drivers/chromedriver.exe")
