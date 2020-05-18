@@ -8,9 +8,9 @@ from tkinter import filedialog
 import tkinter.messagebox
 from tkinter.filedialog import askopenfilename
 from PIL import Image
-import getpass
 import random
 import wolframalpha
+from login import cred
 
 # chrome_options = Options()
 # chrome_options.add_argument("--headless")
@@ -348,8 +348,10 @@ while 1:
         cam.release()
         cv2.destroyAllWindows()
     elif "login to gmail" in text:
-        email = input("Email(or phone) : ")
-        pwd = getpass.getpass("Password : ")
+        details = cred("gmail")
+        email = details[0]
+        pwd = details[1]
+            
         driver = webdriver.Chrome("./drivers/chromedriver.exe")
         driver.get("https://www.gmail.com")
         driver.find_element_by_xpath("//*[@id='identifierId']").send_keys(email)
@@ -361,9 +363,12 @@ while 1:
         password.send_keys(pwd)
         driver.find_element_by_xpath("//*[@id='passwordNext']/span/span").click()
         os.system('cls')
+        
     elif "login to moodle" in text:
-        uname = input("Username : ")
-        pwd = getpass.getpass("Password : ")
+        details = cred("moodle")
+        uname = details[0]
+        pwd = details[1]
+
         driver = webdriver.Chrome("./drivers/chromedriver.exe")
         driver.get("https://moodle.coep.org.in/moodle/login/index.php")
         driver.find_element_by_xpath("//*[@id='username']").send_keys(uname)
@@ -375,8 +380,10 @@ while 1:
         driver.find_element_by_xpath("//*[@id='loginbtn']").click()
         os.system('cls')
     elif "login to instagram" in text:
-        uname = input("Phone number, username or email : ")
-        pwd = getpass.getpass("Password : ")
+        details = cred("instagram")
+        uname = details[0]
+        pwd = details[1]
+
         driver = webdriver.Chrome("./drivers/chromedriver.exe")
         driver.get("https://www.instagram.com/accounts/login/")
         username = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.XPATH, "//*[@id='react-root']/section/main/div/article/div/div[1]/div/form/div[2]/div/label/input")))
@@ -389,8 +396,9 @@ while 1:
         driver.find_element_by_xpath("//*[@id='react-root']/section/main/div/article/div/div[1]/div/form/div[4]").click()
         os.system('cls')
     elif "login to facebook" in text:
-        email = input("Mobile number/email address : ")
-        pwd = getpass.getpass("Password : ")
+        details = cred("facebook")
+        email = details[0]
+        pwd = details[1]
         driver = webdriver.Chrome("./drivers/chromedriver.exe")
         driver.get("https://m.facebook.com/")
         driver.find_element_by_xpath("//*[@id='m_login_email']").send_keys(email)
@@ -402,8 +410,9 @@ while 1:
         driver.find_element_by_xpath("//*[@id='u_0_4']/button").click()
         os.system('cls')
     elif "login to twitter" in text:
-        email = input("Phone, email or username : ")
-        pwd = getpass.getpass("Password : ")
+        details = cred("twitter")
+        email = details[0]
+        pwd = details[1]
         driver = webdriver.Chrome("./drivers/chromedriver.exe")
         driver.get("https://twitter.com/login")
         username = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.XPATH, "//*[@id='react-root']/div/div/div[2]/main/div/div/form/div/div[1]/label/div/div[2]/div/input")))
@@ -416,8 +425,9 @@ while 1:
         driver.find_element_by_xpath("//*[@id='react-root']/div/div/div[2]/main/div/div/form/div/div[3]/div/div/span/span").click()
         os.system('cls')
     elif "login to amazon" in text:
-        email = input("Email/Phone : ")
-        pwd = getpass.getpass("Password : ")
+        details = cred("amazon")
+        email = details[0]
+        pwd = details[1]
         driver = webdriver.Chrome("./drivers/chromedriver.exe")
         driver.get("https://www.amazon.in/ap/signin?openid.pape.max_auth_age=0&openid.return_to=https%3A%2F%2Fwww.amazon.in%2Fref%3Dnav_signin&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.assoc_handle=inflex&openid.mode=checkid_setup&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&")
         driver.find_element_by_xpath("//*[@id='ap_email']").send_keys(email)
@@ -430,8 +440,9 @@ while 1:
         driver.find_element_by_xpath("//*[@id='signInSubmit']").click()
         os.system('cls')
     elif "login to prime" in text:
-        email = input("Email/Phone : ")
-        pwd = getpass.getpass("Password : ")
+        details = cred("prime")
+        email = details[0]
+        pwd = details[1]
         driver = webdriver.Chrome("./drivers/chromedriver.exe")
         driver.get("https://www.amazon.com/ap/signin?accountStatusPolicy=P1&clientContext=257-9778690-6286354&language=en_US&openid.assoc_handle=amzn_prime_video_mobile_us&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.mode=checkid_setup&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.ns.pape=http%3A%2F%2Fspecs.openid.net%2Fextensions%2Fpape%2F1.0&openid.pape.max_auth_age=0&openid.return_to=https%3A%2F%2Fwww.primevideo.com%2Fauth%2Freturn%2Fref%3Dav_auth_ap%3F_encoding%3DUTF8%26location%3D%252Fref%253Dav_nav_sign_in")
         driver.find_element_by_xpath("//*[@id='ap_email']").send_keys(email)
@@ -443,8 +454,9 @@ while 1:
         driver.find_element_by_xpath("//*[@id='signInSubmit']").click()
         os.system('cls')
     elif "login to netflix" in text:
-        email = input("Email/Phone number : ")
-        pwd = getpass.getpass("Password : ")
+        details = cred("netflix")
+        email = details[0]
+        pwd = details[1]
         driver = webdriver.Chrome("./drivers/chromedriver.exe")
         driver.get("https://www.netflix.com/in/login")
         driver.find_element_by_xpath("//*[@id='id_userLoginId']").send_keys(email)
@@ -456,8 +468,9 @@ while 1:
         driver.find_element_by_xpath("//*[@id='appMountPoint']/div/div[3]/div/div/div[1]/form/button").click()
         os.system('cls')
     elif "login to linkedin" in text:
-        email = input("Email/Phone : ")
-        pwd = getpass.getpass("Password : ")
+        details = cred("linkedin")
+        email = details[0]
+        pwd = details[1]
         driver = webdriver.Chrome("./drivers/chromedriver.exe")
         driver.get("https://www.linkedin.com/login")
         driver.find_element_by_xpath("//*[@id='username']").send_keys(email)
@@ -469,8 +482,9 @@ while 1:
         driver.find_element_by_xpath("//*[@type='submit']").click()
         os.system('cls')
     elif "login to github" in text:
-        email = input("Username/Email address : ")
-        pwd = getpass.getpass("Password : ")
+        details = cred("github")
+        email = details[0]
+        pwd = details[1]
         driver = webdriver.Chrome("./drivers/chromedriver.exe")
         driver.get("https://github.com/login")
         driver.find_element_by_xpath("//*[@id='login_field']").send_keys(email)
