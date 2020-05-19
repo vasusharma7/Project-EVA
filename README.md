@@ -22,8 +22,8 @@ The chatbot is trained on Reddit Data using Tensorflow Neural Machine Translatio
 
 Since Reddit data is a little slang and doesn't contain proper answers to some trivial qustions, same is true for out chatbot also.
 
-To chat with EVA, Download the App from here - [https://drive.google.com/file/d/1texcg1mpMae6LmStEbK8IwDS_M1rKGXo/view?usp=drive_open] EVA-Chatbot
-
+To chat with EVA, Download the App from here - [EVA-Chatbot
+](https://drive.google.com/file/d/1texcg1mpMae6LmStEbK8IwDS_M1rKGXo/view?usp=drive_open)
 Next, We are working on to make chatbot a bit specific to answer health related queries of people like queries regarding a particular disease, Corona Virus etc. Even the model to answer corona virus related questions is ready but we could not deploy that live due to server constraints.
 
 
