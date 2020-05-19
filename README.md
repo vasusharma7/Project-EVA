@@ -2,13 +2,31 @@
 
 Your personal Assistant and chatbot
 
-# Suppoted Platforms 
+# Supported Platforms 
   - Windows Native GUI Application - Chatbot + Assistant 
   - Android App - Chatbot
   - Chatbot Deployed on WhatsApp  +1 415 523 8886 . Send code - **join beside-parent** to the bot first to register with sandbox and then start chatting.
   
 # Assistant
- - Just a replica of known assitants - Siri, Cortana, Google Assitant etc.
+ - Comes equipped with the following features:
+    * To show weather information
+    * To display stock prices on appropriate website
+    * To display streaming services which offer TV Show/Movie asked by user.
+    * To translate anything spoken by user to any language required.
+    * To repeat said query by user
+    * To convert images to different formats
+    * To convert documents to pdf 
+    * To compress files/folders
+    * To query something on wikipedia
+    * To fetch news
+    * To take a picture using webcam
+    * To put the system to sleep
+    * To save username/password of various websites like LinkedIn, Moodle, Netflix, Facebook, etc. and to login to them automatically subsequently.
+    * To display formulae using wolframalpha
+    * To handle various types of queries by fetching only required information from Google.
+    * To search for user input on Google
+    * To play games
+    * To role die/Toss a coin
 
 # Chatbot
  - General Purpose Chatbot
