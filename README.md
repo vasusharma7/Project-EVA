@@ -11,6 +11,7 @@ Your personal Assistant and chatbot
  - Comes equipped with the following features:
     * To show weather information
     * To display stock prices on appropriate website
+    * To recommend movie to user based on genre/mood
     * To display streaming services which offer TV Show/Movie asked by user.
     * To translate anything spoken by user to any language required.
     * To repeat said query by user
