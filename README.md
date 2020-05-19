@@ -5,7 +5,7 @@ Your personal Assistant and chatbot
 # Suppoted Platforms 
   - Windows Native GUI Application - Chatbot + Assistant 
   - Android App - Chatbot
-  - Chatbot Deployed on WhatsApp - +1 415 523 8886
+  - Chatbot Deployed on WhatsApp  +1 415 523 8886 . Send code - **join beside-parent** to the bot first to register with sandbox and then start chatting.
   
 # Assistant
  - Just a replica of known assitants - Siri, Cortana, Google Assitant etc.
