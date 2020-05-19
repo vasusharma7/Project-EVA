@@ -1,6 +1,8 @@
-# PPL_Project_2020
+# E.V.A 
+(Electronic Virtual Assistant)
+Your Personal Assistant and Chatbot.
 
-Your personal Assistant and chatbot
+EVA is our attempt at making the best possible assistant for platforms which do not have very good alternatives.
 
 # Supported Platforms 
   - Windows Native GUI Application - Chatbot + Assistant 
