@@ -3,7 +3,7 @@
 Your personal Assistant and chatbot
 
 # Suppoted Platforms 
-  - Windows Native GUI Application - Chatbot + Assistant
+  - Windows Native GUI Application - Chatbot + Assistant 
   - Android App - Chatbot
   - Chatbot Deployed on WhatsApp - +1 415 523 8886
   
@@ -24,9 +24,18 @@ Since Reddit data is a little slang and doesn't contain proper answers to some t
 
 To chat with EVA, Download the App from here - [EVA-Chatbot
 ](https://drive.google.com/file/d/1texcg1mpMae6LmStEbK8IwDS_M1rKGXo/view?usp=drive_open)
+
+
 Next, We are working on to make chatbot a bit specific to answer health related queries of people like queries regarding a particular disease, Corona Virus etc. Even the model to answer corona virus related questions is ready but we could not deploy that live due to server constraints.
 
 
+# Platform Description
+
+1. Windows
+
+2. Android App
+
+3. ClI
 
 
  
