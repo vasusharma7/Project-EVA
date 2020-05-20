@@ -1,4 +1,0 @@
-*.exe filter=lfs diff=lfs merge=lfs -text
-electon filter=lfs diff=lfs merge=lfs -text
-electron filter=lfs diff=lfs merge=lfs -text
-electron.file filter=lfs diff=lfs merge=lfs -text
