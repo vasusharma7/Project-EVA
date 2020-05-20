@@ -75,12 +75,14 @@ It only covers only chatbot part as all native Desktop functionalities could not
 All functionalities can  also be used with command line **python** interface.
 
 # Screenshots
-![EVA-App](https://drive.google.com/uc?export=view&id=15GJVO-4_H6tOV45rN63kwh0qo9eJ-LRT =100x100) 
-![EVA-App](https://drive.google.com/uc?export=view&id=15GJVO-4_H6tOV45rN63kwh0qo9eJ-LRT =100x100) 
-![EVA-Desktop-GUI](https://drive.google.com/uc?export=view&id=15GJVO-4_H6tOV45rN63kwh0qo9eJ-LRT =100x100) 
-![EVA-Tray_Icon](https://drive.google.com/uc?export=view&id=1zWFJuTx3pXzZsyjsiHHIEbWAJ0vQGmuc =100x100) 
+![EVA-App](https://drive.google.com/uc?export=view&id=1HWisLEsWV4Eixs57rt7AGMTrqu2wTeu2){:height="700px" width="400px"}
+![EVA-App](https://drive.google.com/uc?export=view&id=15GJVO-4_H6tOV45rN63kwh0qo9eJ-LRT){:height="700px" width="400px"}
+
+![EVA-Desktop-GUI](https://drive.google.com/uc?export=view&id=1zHDyZmo4YfWnh5ocDMowAtwvsveNXRDr){:height="400px" width="400px"}
+![EVA-Tray_Icon](https://drive.google.com/uc?export=view&id=1zWFJuTx3pXzZsyjsiHHIEbWAJ0vQGmuc){:height="700px" width="400px"}}
 
 # License
+
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.
  
