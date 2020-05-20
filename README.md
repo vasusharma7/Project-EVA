@@ -72,11 +72,10 @@ It only covers only chatbot part as all native Desktop functionalities could not
 
 3. CLI
 
-  All functionalities can  also be used with command line **python** interface.
+All functionalities can  also be used with command line **python** interface.
 
 # Screenshots
-
-
+![EVA-App](https://drive.google.com/open?id=15GJVO-4_H6tOV45rN63kwh0qo9eJ-LRT) ![EVA-App](https://drive.google.com/open?id=15GJVO-4_H6tOV45rN63kwh0qo9eJ-LRT) ![EVA-Desktop-GUI](https://drive.google.com/open?id=15GJVO-4_H6tOV45rN63kwh0qo9eJ-LRT) ![EVA-Tray_Icon](https://drive.google.com/open?id=1zWFJuTx3pXzZsyjsiHHIEbWAJ0vQGmuc) 
 
 # License
 
