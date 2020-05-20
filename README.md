@@ -1,4 +1,4 @@
-# E.V.A 
+# E.V.A.
 (Electronic Virtual Assistant)
 
 Your Personal Assistant and Chatbot.
@@ -9,6 +9,13 @@ EVA is our attempt at making the best possible assistant for platforms which do 
   - Windows Native GUI Application - Chatbot + Assistant 
   - Android App - Chatbot
   - Chatbot Deployed on WhatsApp  +1 415 523 8886 . Send code - **join beside-parent** to the bot first to register with sandbox and then start chatting.
+# Frameworks, Tools and Libraries Used 
+  - Python3
+  - Python Libraries - Selenium, BeautifulSoup, Tkinter, PyAudio, tweepy, SpeechRecognition, gTTS, google_search etc.
+  - React Native
+  - Electron-JS
+  - Tensorflow-nmt
+  - AWS
   
 # Assistant
  - Comes equipped with the following features:
@@ -40,7 +47,7 @@ EVA is our attempt at making the best possible assistant for platforms which do 
  - You can try chatbot in GUI mode, through Android App and also in CLI mode.
  
  
-The chatbot is trained on **Reddit Data** using Tensorflow Neural Machine Translation (nmt) .It uses a concept that training a chatbot is similar to training a machine translation (Engish - Japanese) model , the differnce being that it is English - English translation.The training data had 740k samples of question-answer pairs. Its training files were prepared on google Colab. The Chatbot was trained on 512x3 neural network for 100k epochs with batch size of 64. It was trainedon AWS t2xLarge for about 10 days ( non-GPU ). The hyperparameters were set to fit the constraints of the server we had.(16GB RAM). It can be improved if the number of epochs are increased as there was enough data.
+The chatbot is trained on **Reddit Data** using Tensorflow Neural Machine Translation (nmt). This model is based on Encoder-Decoder Architecture. It uses a concept that training a chatbot is similar to training a machine translation (Engish - Japanese) model , the only differnce being that it is English - English translation. The training data had 740k samples of question-answer pairs. Its training files were prepared on google Colab. The Chatbot was trained on *512x3 neural network for 100k epochs with batch size of 64* . It was trainedon *AWS t2xLarge* for about 10 days ( non-GPU ). The hyperparameters were set to fit the constraints of the server we had.(16GB RAM). It can be improved if the number of epochs are increased as there was enough data.
 
 Since Reddit data is a little slang and doesn't contain proper answers to some trivial qustions, same is true for out chatbot also.
 
@@ -64,7 +71,11 @@ EVA is the native windows executable software. The GUI is developed using **Elec
 It only covers only chatbot part as all native Desktop functionalities could not be migrated to Android. The App is developed  in React Native. It used **React-Native Paper Elements** for styling and utilises the chatbot hosted on AWS instance.
 
 3. CLI
+
   All functionalities can  also be used with command line **python** interface.
+
+# Screenshots
+
 
 
 # License
