@@ -542,7 +542,6 @@ while 1:
             pass
         try:
             data=soup.findAll('div', attrs={'class':'thODed Uekwlc XpoqFe'})
-            # res=(data.text).split(" ")
             count=0
             os.system('cls')
             for i in data:
