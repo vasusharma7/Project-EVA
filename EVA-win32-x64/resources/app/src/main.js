@@ -1,5 +1,12 @@
 const electron = require("electron");
-const { Menu, app, Tray, BrowserWindow, ipcMain: ipc } = electron; //Inter Process Communication
+const {
+  Menu,
+  app,
+  Tray,
+  BrowserWindow,
+  ipcMain: ipc,
+  globalShortcut,
+} = electron;
 const exec = require("child_process").exec;
 const child_process = require("child_process");
 var { PythonShell } = require("python-shell");
@@ -12,36 +19,12 @@ function execute(command, callback) {
 }
 let tray = null;
 
-// exec("ls -la", (error, stdout, stderr) => {
-//     if (error) {
-//         console.log(`error: ${error.message}`);
-//         return;
-//     }
-//     if (stderr) {
-//         console.log(`stderr: ${stderr}`);
-//         return;
-//     }
-//     console.log(`stdout: ${stdout}`);
-// });
-
-// execute('python -c "import sys; print(sys.executable)"', (output) => {
-// pythonHome = String(output).replace("\\", "/");
-// console.log(pythonHome.replace("\\", "/"));
-// options = {
-//   // mode: "text",
-//   pythonPath:
-//     "C:/Users/Vasu/AppData/Local/Programs/Python/Python37/python.exe",
-//   // pythonPath:'/usr/bin/python3'
-//   // pythonOptions: ["-u"],
-//   // args: ['value1', 'value2', 'value3']
-// };
-// });
 options = {
   // mode: "text",
   //pythonPath:"mypython/Scripts/python.exe",
-//  pythonPath:"C:/Users/soham/Desktop/PPL_Project_2020-parekh0711-patch-1/bot/bot/EVA-win32-x64/resources/app/src/mypython/Scripts/python.exe",
-//  scriptPath:"python/myenv/Scripts",
- pythonPath: "C:/Users/soham/AppData/Local/Programs/Python/Python38/python.exe",
+  pythonPath:"C:/Users/soham/AppData/Local/Programs/Python/Python38/python.exe",
+  //  scriptPath:"python/myenv/Scripts",
+  //pythonPath: "C:/Users/Vasu/AppData/Local/Programs/Python/Python37/python.exe",
   //pythonPath:'/usr/bin/python3'
   // pythonOptions: ["-u"],
   // args: ['value1', 'value2', 'value3']
@@ -78,6 +61,11 @@ app.on("ready", async (_) => {
       nodeIntegration: true,
     },
   });
+
+  globalShortcut.register("CommandOrControl+E", () => {
+    mainWindow.show();
+  });
+
   mainWindow.setResizable(false);
   mainWindow.setMenuBarVisibility(false);
   // mainWindow.setAlwaysOnTop(true);
@@ -100,8 +88,8 @@ app.on("ready", async (_) => {
     },
   ]);
   tray.on("click", () => {
-    mode="asst"
-    manage.trigger+=1
+    mode = "asst";
+    manage.trigger += 1;
     mainWindow.show();
   });
   // tray.on("click", () => {
@@ -128,18 +116,22 @@ app.on("ready", async (_) => {
   manage.registerListener(() => {
     console.log("CALLING SCRIPT");
     if (mode == "asst") {
-      PythonShell.run(path.join(__dirname, "../ppl/bot.py"), options, function ( //bot.py
+      PythonShell.run(path.join(__dirname, "../ppl/bot.py"), options, function (
+        //bot.py
         err,
         results
       ) {
         if (err) {
           throw err;
-          return;
         }
-        if (results.length > 3) {
-          mainWindow.webContents.send("displayResponse", results); //event mirror isntance
+        try {
+          if (results.length > 3) {
+            mainWindow.webContents.send("displayResponse", results); //event mirror isntance
+          }
+          console.log("results: ", results);
+        } catch {
+          //
         }
-        console.log("results: ", results);
         manage.trigger += 1;
       });
     }
@@ -149,29 +141,37 @@ app.on("ready", async (_) => {
         options,
         function (err, results) {
           if (err) throw err;
-          if (results.length > 3) {
-            mainWindow.webContents.send("displayResponse", results); //event mirror isntance
+          try {
+            if (results.length > 3) {
+              mainWindow.webContents.send("displayResponse", results); //event mirror isntance
+            }
+            console.log("results: ", results);
+          } catch {
+            //
           }
-          console.log("results: ", results);
           manage.trigger += 1;
         }
       );
     }
-    // if (mode == "sleep") {
-    //   PythonShell.run(
-    //     path.join(__dirname, "../ppl/sleep.py"),
-    //     options,
-    //     function (err, results) {
-    //       if (err) throw err;
-    //       if (results[0] == "Activate") {
-    //         mainWindow.show()
-    //         mode="asst"
-    //       }
-    //       console.log("results: ", results);
-    //       manage.trigger += 1;
-    //     }
-    //   );
-    // }
+    if (mode == "sleep") {
+      PythonShell.run(
+        path.join(__dirname, "../ppl/sleep.py"),
+        options,
+        function (err, results) {
+          if (err) throw err;
+          try {
+            if (results[0] == "activate") {
+              mainWindow.show();
+              mode = "asst";
+              console.log("results: ", results);
+            }
+          } catch {
+            //
+          }
+          manage.trigger += 1;
+        }
+      );
+    }
   });
   manage.trigger += 1;
 
@@ -187,7 +187,7 @@ app.on("ready", async (_) => {
 
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {
-    app.quit();
+    app.exit(0);
   }
 });
 
@@ -199,10 +199,16 @@ ipc.on("startChat", (evt) => {
 });
 
 ipc.on("close", (evt) => {
-  app.quit();
+  app.exit(0);
 });
-
+app.on("before-quit", () => {
+  globalShortcut.unregisterAll();
+  if (mainWindow) {
+    mainWindow.removeAllListeners("close");
+    mainWindow.close();
+  }
+});
 ipc.on("min", (evt) => {
-   mode="sleep"
+  mode = "sleep";
   mainWindow.hide();
 });
