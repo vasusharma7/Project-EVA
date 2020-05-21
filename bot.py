@@ -1,6 +1,6 @@
 from modules import *
 from twitter import tweets
-from chat import master_chat, driver
+from chat import master_chat
 from game import main
 import tkinter as tk
 from tkinter import *
@@ -12,10 +12,10 @@ import random
 import wolframalpha
 from login import cred
 
-# chrome_options = Options()
-# chrome_options.add_argument("--headless")
-# chrome_options.add_argument("--no-sandbox")
-# driver = webdriver.Chrome("drivers/chromedriver",options=chrome_options)
+chrome_options = Options()
+chrome_options.add_argument("--headless")
+chrome_options.add_argument("--no-sandbox")
+driver = webdriver.Chrome("drivers/chromedriver",options=chrome_options)
 if not os.path.exists("./audio"):
     os.mkdir("./audio")
 if not os.path.exists("./images"):
@@ -86,6 +86,12 @@ while 1:
         text2+=text
         webbrowser.open_new_tab(text2)
         os.system('cls')
+    elif text[0:4]=="play":
+        for j in search(text, tld="co.in", num=10,stop=10,pause=2):
+            if "youtube" in j:
+                webbrowser.open_new_tab(j)
+                os.system('cls')
+                break
     elif "suggest movie" in text:
         speech=gTTS("What genre do you want?",lang='en',slow=False)
         try:
@@ -291,10 +297,10 @@ while 1:
     elif "chat mode" in text:
         # system("clear")
         master_chat()
-    elif "game" in text:
+    elif text=="game":
         main()
         system("cls")
-    elif "dice" in text:
+    elif text=="roll a die":
         num = str(random.randint(1, 6))
         playsound.playsound("dice.wav",True)
         speak = gTTS(text = "You rolled a " + num, lang='en', slow=False)
@@ -304,7 +310,7 @@ while 1:
             print("FileNotFoundError: The system cannot find the file specified: 'speech.mp3'")
         speak.save("speech.mp3")
         playsound.playsound("speech.mp3",True)
-    elif "coin" in text:
+    elif text=="toss a coin":
         flip = random.randint(0, 1)
         if flip == 0:
             text = "heads"
@@ -333,7 +339,7 @@ while 1:
         continue
     elif text == "go to sleep":
         os.system("rundll32.exe powrprof.dll,SetSuspendState 0,1,0")
-    elif "camera" in text:
+    elif text=="camera":
         cam = cv2.VideoCapture(0)
         cv2.namedWindow("test")
         while True:
@@ -354,7 +360,7 @@ while 1:
                 image_count += 1
         cam.release()
         cv2.destroyAllWindows()
-    elif "login to gmail" in text:
+    elif text=="login to gmail":
         details = cred("gmail")
         email = details[0]
         pwd = details[1]
@@ -370,7 +376,7 @@ while 1:
         password.send_keys(pwd)
         driver.find_element_by_xpath("//*[@id='passwordNext']/span/span").click()
         os.system('cls')
-    elif "login to moodle" in text:
+    elif text=="login to moodle":
         details = cred("moodle")
         uname = details[0]
         pwd = details[1]
@@ -385,7 +391,7 @@ while 1:
         password.send_keys(pwd)
         driver.find_element_by_xpath("//*[@id='loginbtn']").click()
         os.system('cls')
-    elif "login to instagram" in text:
+    elif text=="login to instagram":
         details = cred("instagram")
         uname = details[0]
         pwd = details[1]
@@ -401,7 +407,7 @@ while 1:
         password.send_keys(pwd)
         driver.find_element_by_xpath("//*[@id='react-root']/section/main/div/article/div/div[1]/div/form/div[4]").click()
         os.system('cls')
-    elif "login to facebook" in text:
+    elif text=="login to facebook":
         details = cred("facebook")
         email = details[0]
         pwd = details[1]
@@ -415,7 +421,7 @@ while 1:
         password.send_keys(pwd)
         driver.find_element_by_xpath("//*[@id='u_0_4']/button").click()
         os.system('cls')
-    elif "login to twitter" in text:
+    elif text=="login to twitter":
         details = cred("twitter")
         email = details[0]
         pwd = details[1]
@@ -430,7 +436,7 @@ while 1:
         password.send_keys(pwd)
         driver.find_element_by_xpath("//*[@id='react-root']/div/div/div[2]/main/div/div/form/div/div[3]/div/div/span/span").click()
         os.system('cls')
-    elif "login to amazon" in text:
+    elif text=="login to amazon":
         details = cred("amazon")
         email = details[0]
         pwd = details[1]
@@ -445,7 +451,7 @@ while 1:
         password.send_keys(pwd)
         driver.find_element_by_xpath("//*[@id='signInSubmit']").click()
         os.system('cls')
-    elif "login to prime" in text:
+    elif text=="login to prime":
         details = cred("prime")
         email = details[0]
         pwd = details[1]
@@ -459,7 +465,7 @@ while 1:
         password.send_keys(pwd)
         driver.find_element_by_xpath("//*[@id='signInSubmit']").click()
         os.system('cls')
-    elif "login to netflix" in text:
+    elif text=="login to netflix":
         details = cred("netflix")
         email = details[0]
         pwd = details[1]
@@ -473,7 +479,7 @@ while 1:
         password.send_keys(pwd)
         driver.find_element_by_xpath("//*[@id='appMountPoint']/div/div[3]/div/div/div[1]/form/button").click()
         os.system('cls')
-    elif "login to linkedin" in text:
+    elif text=="login to linkedin":
         details = cred("linkedin")
         email = details[0]
         pwd = details[1]
@@ -487,7 +493,7 @@ while 1:
         password.send_keys(pwd)
         driver.find_element_by_xpath("//*[@type='submit']").click()
         os.system('cls')
-    elif "login to github" in text:
+    elif text=="login to github":
         details = cred("github")
         email = details[0]
         pwd = details[1]
