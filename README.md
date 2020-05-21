@@ -75,8 +75,11 @@ It only covers only chatbot part as all native Desktop functionalities could not
 All functionalities can  also be used with command line **python** interface.
 
 # Screenshots
-![EVA-App](https://drive.google.com/uc?export=view&id=15GJVO-4_H6tOV45rN63kwh0qo9eJ-LRT)
-![EVA-Desktop-GUI](https://drive.google.com/uc?export=view&id=1zHDyZmo4YfWnh5ocDMowAtwvsveNXRDr)
+![EVA-App](https://github.com/vasusharma7/Project-EVA/blob/master/Screenshots/1.jpg)
+![EVA-App](https://github.com/vasusharma7/Project-EVA/blob/master/Screenshots/2.jpg)
+
+![EVA-Desktop-GUI](https://github.com/vasusharma7/Project-EVA/blob/master/Screenshots/3.png)
+![Tray Icon](https://github.com/vasusharma7/Project-EVA/blob/master/Screenshots/4.png)
 
 # License
 
