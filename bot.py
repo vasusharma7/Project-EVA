@@ -91,22 +91,22 @@ while 1:
         try:
             os.remove("speech_default.mp3")
         except FileNotFoundError:
-            print("FileNotFoundError: The system cannot find the file specified: 'speech_default.mp3'")
+            pass
         speech.save("speech_default.mp3")
         playsound.playsound("speech_default.mp3",True)
-        while(1):
-            s=sr.Recognizer()
-            with sr.Microphone() as source:
-                print("Speak")
-                audio=s.listen(source, timeout = 10)
-                print("Over")
-            try:
-                text=s.recognize_google(audio)
-            except:
-                continue
-            else:
-                break
-        # text=input()
+        # while(1):
+        #     s=sr.Recognizer()
+        #     with sr.Microphone() as source:
+        #         print("Speak")
+        #         audio=s.listen(source, timeout = 10)
+        #         print("Over")
+        #     try:
+        #         text=s.recognize_google(audio)
+        #     except:
+        #         continue
+        #     else:
+        #         break
+        text=input()
         text2="agoodmovietowatch.com"
         text=text+" movie "+text2
         for j in search(text, tld="co.in", num=10,stop=10,pause=2):
@@ -114,6 +114,12 @@ while 1:
                 webbrowser.open_new_tab(j)
                 os.system('cls')
                 break
+    elif text=="weather forecast":
+        for j in search(text, tld="co.in", num=10, stop=10, pause=2):
+            if "accuweather" in j:
+                webbrowser.open_new_tab(j)
+                break
+        system("cls")
     elif "stock price" in text:
         flag=True
         for j in search(text, tld="co.in", num=10, stop=10, pause=2):
@@ -149,7 +155,7 @@ while 1:
         elif language=="chinese traditional":
             language="chinese (traditional)"
         trans=Translator()               #translator object
-        try:                              
+        try:
             res=trans.translate(text,language)
             print(res.text)
             language=googletrans.LANGCODES[language]
@@ -158,7 +164,7 @@ while 1:
         else:
             try:
                 speech=gTTS(text=res.text,lang=language,slow=False)
-            except AssertionError:           
+            except AssertionError:
                 print("AssertionError: 'No text to speak'")
             else:
                 try:
@@ -286,7 +292,8 @@ while 1:
         # system("clear")
         master_chat()
     elif "game" in text:
-        main() 
+        main()
+        system("cls")
     elif "dice" in text:
         num = str(random.randint(1, 6))
         playsound.playsound("dice.wav",True)
@@ -351,7 +358,7 @@ while 1:
         details = cred("gmail")
         email = details[0]
         pwd = details[1]
-            
+
         driver = webdriver.Chrome("./drivers/chromedriver.exe")
         driver.get("https://www.gmail.com")
         driver.find_element_by_xpath("//*[@id='identifierId']").send_keys(email)
@@ -363,7 +370,6 @@ while 1:
         password.send_keys(pwd)
         driver.find_element_by_xpath("//*[@id='passwordNext']/span/span").click()
         os.system('cls')
-        
     elif "login to moodle" in text:
         details = cred("moodle")
         uname = details[0]
@@ -496,19 +502,19 @@ while 1:
         driver.find_element_by_xpath("//*[@id='login']/form/div[4]/input[9]").click()
         os.system('cls')
     elif "calculate" in text:
-        # Taking input from user 
-        #question = input('Question : ') 
-        app_id = "4LJ6P5-XH7TQG859X"   
-        # Instance of wolfram alpha client class  
-        client = wolframalpha.Client(app_id) 
+        # Taking input from user
+        #question = input('Question : ')
+        app_id = "4LJ6P5-XH7TQG859X"
+        # Instance of wolfram alpha client class
+        client = wolframalpha.Client(app_id)
         try:
-            res = client.query(text)         
-            # Includes only text from the response 
-            answer = next(res.results).text  
+            res = client.query(text)
+            # Includes only text from the response
+            answer = next(res.results).text
         except:
             print("Sorry, the assistant doesn't understand your query")
-        else:      
-            print("Answer : " + answer) 
+        else:
+            print("Answer : " + answer)
     elif "exit" in text:
         print("GoodBye")
         break
