@@ -78,7 +78,7 @@ All functionalities can  also be used with command line **python** interface.
 ![EVA-App](https://github.com/vasusharma7/Project-EVA/blob/master/Screenshots/1.jpg)
 ![EVA-App](https://github.com/vasusharma7/Project-EVA/blob/master/Screenshots/2.jpg)
 
-![EVA-Desktop-GUI](https://github.com/vasusharma7/Project-EVA/blob/master/Screenshots/3.png)
+![EVA-Desktop-GUI](https://github.com/vasusharma7/Project-EVA/blob/master/Screenshots/3.PNG)
 ![Tray Icon](https://github.com/vasusharma7/Project-EVA/blob/master/Screenshots/4.png)
 
 # License
